@@ -40,30 +40,33 @@ func main(){
 		w.Write(response)
 	})
 	
-	//handler product
-		myRouter.HandleFunc("/", handler.HomePage)
+	//handler product get data to FrontEnd from API
+		myRouter.HandleFunc("/", handler.FrontHomePage)
+		myRouter.HandleFunc("/products", handler.FrontGetProducts).Methods("GET")
+
+	//handler product DB-API
 		//get all product
-		myRouter.HandleFunc("/products", handler.GetProducts).Methods("GET")
+		myRouter.HandleFunc("/api/products", handler.GetProducts).Methods("GET")
 		//get product by id
-		myRouter.HandleFunc("/products/{id}", handler.GetProduct).Methods("GET")
+		myRouter.HandleFunc("/api/products/{id}", handler.GetProduct).Methods("GET")
 		//insert products
-		myRouter.HandleFunc("/products", handler.InsertProduct).Methods("POST")
+		myRouter.HandleFunc("/api/products", handler.InsertProduct).Methods("POST")
 		//update product by id
-		myRouter.HandleFunc("/products/{id}", handler.UpdateProduct).Methods("PUT")
+		myRouter.HandleFunc("/api/products/{id}", handler.UpdateProduct).Methods("PUT")
 		//delete product by id
-		myRouter.HandleFunc("/products/{id}", handler.DeleteProduct).Methods("DELETE")
+		myRouter.HandleFunc("/api/products/{id}", handler.DeleteProduct).Methods("DELETE")
 
 	//handler contact
 		//get all contact
-		myRouter.HandleFunc("/contacts", handler.GetContacts).Methods("GET")
+		myRouter.HandleFunc("/api/contacts", handler.GetContacts).Methods("GET")
 		//get product by id
-		myRouter.HandleFunc("/contacts/{id}", handler.GetContact).Methods("GET")
+		myRouter.HandleFunc("/api/contacts/{id}", handler.GetContact).Methods("GET")
 		//insert new contact
-		myRouter.HandleFunc("/contacts", handler.InsertContact).Methods("POST")
+		myRouter.HandleFunc("/api/contacts", handler.InsertContact).Methods("POST")
 		//insert new contact
-		myRouter.HandleFunc("/contacts/{id}", handler.UpdateContact).Methods("PUT")
+		myRouter.HandleFunc("/api/contacts/{id}", handler.UpdateContact).Methods("PUT")
 		//delete contact
-		myRouter.HandleFunc("/contacts/{id}", handler.DeleteContact).Methods("DELETE")
+		myRouter.HandleFunc("/api/contacts/{id}", handler.DeleteContact).Methods("DELETE")
 
 
 	log.Fatal(http.ListenAndServe(":9999", myRouter))

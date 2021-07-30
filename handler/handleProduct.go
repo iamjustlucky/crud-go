@@ -10,10 +10,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func HomePage(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w, "Welcome!")
-}
-
 func GetProducts(w http.ResponseWriter, r *http.Request){
 	fmt.Println("Endpoint hit : Get Products")
 
